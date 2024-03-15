@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Haram Act Checker</title>
+  <style>
+ 
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f3e6;  
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      max-width: 400px;
+      padding: 20px;
+      border-radius: 10px;
+      background-color: #fff;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #343a40;
+    }
+    p {
+      color: #6c757d;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .input {
+      display: block;
+      margin-bottom: 10px;
+    }
+    .word-input {
+      margin-bottom: 10px;
+      padding: 10px;
+      width: calc(100% - 20px);
+      border: 1px solid #ced4da;
+      border-radius: 5px;
+      font-family: 'Poppins', sans-serif;
+    }
+    .submit {
+      padding: 12px 24px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      width: 100%;
+      display: block;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+    .submit:hover {
+      background-color: #0056b3; 
+      transform: scale(1.05);  
+    }
+    .submit:focus {
+      outline: none;
+      box-shadow: 0 0 5px #007bff;  
+    }
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+      text-align: center;
+      font-size: 18px;
+    }
+    .haram {
+      color: #ff3333;
+    }
+    .not-haram {
+      color: #4CAF50;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Haram Act Checker</h1>
+    <p>Enter a word below to check if it is a haram act:</p>
+    <label class="input" for="word">Enter a word:</label>
+    <input type="text" id="word" class="word-input">
+    <button class="submit" onclick="submitWord()">Check</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    var bannedWords = ["music", "drinking", "gambling", "interest", "adultery", "shirk","murder","stealing","backbiting","swine","dancing","cheating" ];
+
+    function submitWord() {
+      var word = document.getElementById("word").value.trim();
+      if (word !== "") {
+        if (bannedWords.includes(word.toLowerCase())) {
+          displayResult("This is a haram act.", true);
+        } else {
+          displayResult("This is not a haram act", false);
+        }
+      } else {
+        displayResult("Please enter a word.");
+      }
+    }
+
+    function displayResult(message, isHaram) {
+      var resultElement = document.getElementById("result");
+      resultElement.innerText = message;
+      if (isHaram) {
+        resultElement.classList.add("haram");
+        resultElement.classList.remove("not-haram");
+      } else {
+        resultElement.classList.add("not-haram");
+        resultElement.classList.remove("haram");
+      }
+    }
+  </script>
+</body>
+</html>
